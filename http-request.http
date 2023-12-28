@@ -1,0 +1,157 @@
+
+###addDeer2
+GRAPHQL http://localhost:8080/graphql
+
+mutation   {
+  addDeer2(specie: "elk", areal: "Europe, N America") {
+    __typename
+    specie
+    sex
+    areal
+    isRare
+
+  }
+}
+
+
+###
+GRAPHQL http://localhost:8080/graphql
+
+mutation  addDeer($input: ExampleInput) {
+  addDeer(input: $input) {
+    __typename
+    specie
+    sex
+    areal
+    isRare
+
+  }
+}
+
+{
+   "input": {
+     "specie": "moose",
+     "sex": "male",
+     "areal": "Europe, N America",
+     "rare": false
+   }
+
+
+}
+
+###
+GRAPHQL http://localhost:8080/graphql
+
+query  {
+    allWilds {
+        specie
+    }
+}
+
+<> 2023-12-28T182504.200.json
+
+###
+GRAPHQL http://localhost:8080/graphql
+
+query  {
+  allCats {
+    specie
+    name
+    breed
+    indoor
+    needsCage
+
+  }
+}
+
+###
+GRAPHQL http://localhost:8080/graphql
+
+query  {
+    allDogs {
+        specie
+        name
+        breed
+        kind
+        sex
+
+    }
+}
+
+###
+GRAPHQL http://localhost:8080/graphql
+
+query  {
+  allPets {
+    ... on DomesticAnimal{
+        __typename
+        breed
+        name
+    }
+  }
+}
+
+<> 2023-12-28T160046.200.json
+<> 2023-12-28T160031.200.json
+
+###
+GRAPHQL http://localhost:8080/graphql
+
+query  {
+  allCattle {
+      ... on Cow{
+          __typename
+          name
+          breed
+          milkPerDay
+      }
+      ... on Pig{
+          __typename
+          name
+          breed
+          weight
+      }
+  }
+}
+
+
+###
+GRAPHQL http://localhost:8080/graphql
+
+query  {
+   allAnimals {
+
+        ... on Wild {
+            __typename
+        }
+        ... on DomesticAnimal{
+            specie
+            sex
+            breed
+            name
+
+        }
+       ... on WildAnimal{
+           specie
+           isRare
+           areal
+           sex
+       }
+    }
+
+  }
+
+
+
+
+###
+GRAPHQL http://localhost:8080/graphql
+
+query  {
+  allDomestics {
+    name
+  }
+}
+
+
+###

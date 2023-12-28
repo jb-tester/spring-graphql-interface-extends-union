@@ -1,0 +1,123 @@
+type Query {
+    allAnimals: [Animal!]!
+    allDomestics: [DomesticAnimal!]!
+    allWilds: [WildAnimal!]!
+    allPets: [Pet!]!
+    allCattle: [Cattle!]!
+
+}
+
+extend type Query {
+    allCats: [Cat!]!
+    allDogs: [Dog!]!
+}
+
+type Mutation{
+    addDeer(input: ExampleInput):Deer!
+
+}
+
+extend type Mutation {
+    addDeer2(specie: String = "some deer", sex: Sex = female, areal: String!, rare: Boolean = false):Deer!
+}
+
+
+interface DomesticAnimal{
+    name : String!
+    specie: String!
+    sex: Sex!
+    breed: String!
+}
+
+interface WildAnimal{
+    isRare: Boolean!
+    specie: String!
+    sex: Sex!
+    areal: String!
+}
+
+
+
+type Dog implements DomesticAnimal  {
+    name : String!
+    specie: String!
+    sex: Sex!
+    isCattle: Boolean!
+    needsCage: Boolean!
+    breed: String!
+    kind: DogKind
+}
+type Cat implements DomesticAnimal  {
+    name : String!
+    specie: String!
+    sex: Sex!
+    isCattle: Boolean!
+    needsCage: Boolean!
+    breed: String!
+    indoor: Boolean!
+}
+type Cow implements DomesticAnimal  {
+    name : String!
+    specie: String!
+    sex: Sex!
+    isCattle: Boolean!
+    needsCage: Boolean!
+    breed: String!
+    milkPerDay: Int
+}
+type Pig implements DomesticAnimal  {
+    name : String!
+    specie: String!
+    sex: Sex!
+    isCattle: Boolean!
+    needsCage: Boolean!
+    breed: String!
+    weight: Int
+}
+
+type Fox implements WildAnimal{
+    isRare: Boolean!
+    specie: String!
+    sex: Sex!
+    areal: String!
+}
+type Tiger implements WildAnimal{
+    isRare: Boolean!
+    specie: String!
+    sex: Sex!
+    areal: String!
+}
+type Deer implements WildAnimal{
+    isRare: Boolean!
+    specie: String!
+    sex: Sex!
+    areal: String!
+}
+enum DogKind {
+    SHEPHERD,
+    HUNT,
+    PET,
+    GUARD
+}
+extend enum DogKind {
+    SLED_DOG
+}
+enum Sex {
+    female,male
+}
+union Cattle = Cow | Pig
+
+union Pet = Dog | Cat
+
+union Wild = Fox | Tiger | Deer
+
+union Animal = Dog | Cat | Cow | Pig
+
+extend union Animal = Tiger | Fox | Deer
+
+input ExampleInput {
+    sex: Sex = female
+    specie: String = "some deer"
+    areal: String = "everywhere"
+    rare: Boolean = false
+}
