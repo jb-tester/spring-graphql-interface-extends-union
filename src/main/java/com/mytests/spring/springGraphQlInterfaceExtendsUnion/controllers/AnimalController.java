@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.List;
 
 @Controller
 public class AnimalController {
@@ -59,6 +58,7 @@ public class AnimalController {
         animals.addAll(wildAnimals);
         return animals;
     }
+
     @QueryMapping()
     public List<DomesticAnimal> allDomestics() {
         domesticAnimals.addAll(dogs);
@@ -67,12 +67,14 @@ public class AnimalController {
         domesticAnimals.addAll(pigs);
         return domesticAnimals;
     }
+
     @QueryMapping()
     public List<WildAnimal> allWilds() {
         updatedWilds.addAll(wildAnimals);
         updatedWilds.addAll(deers);
         return updatedWilds;
     }
+
     @QueryMapping()
     public List<? extends DomesticAnimal> allCattle() {
         cattle.addAll(cows);
@@ -80,26 +82,30 @@ public class AnimalController {
 
         return cattle;
     }
-    
+
     @QueryMapping()
     public List<? extends DomesticAnimal> allPets() {
         pets.addAll(cats);
         pets.addAll(dogs);
         return pets;
     }
+
+    // https://youtrack.jetbrains.com/issue/IDEA-339942
     @QueryMapping()
     public List<Cat> allCats() {
-        
+
         return cats;
     }
+
+    // https://youtrack.jetbrains.com/issue/IDEA-339942
     @QueryMapping()
     public List<Dog> allDogs() {
-        
+
         return dogs;
     }
 
     @MutationMapping("addDeer")
-    public Deer addDeer(@Argument("input") ExampleInput input){
+    public Deer addDeer(@Argument("input") ExampleInput input) {
         String sex = input.getSex();
         String specie = input.getSpecie();
         String areal = input.getAreal();
@@ -109,12 +115,13 @@ public class AnimalController {
         return deer;
     }
 
+    // https://youtrack.jetbrains.com/issue/IDEA-339942
     @MutationMapping("addDeer2")
-    public Deer addDeer2(@Argument String specie, @Argument String sex, @Argument String areal, @Argument Boolean rare){
+    public Deer addDeer2(@Argument String specie, @Argument String sex, @Argument String areal, @Argument Boolean rare) {
 
         Deer deer = new Deer(sex, specie, areal, rare);
         deers.add(deer);
         return deer;
     }
-    
+
 }
