@@ -100,7 +100,7 @@ query  {
 <> 2023-12-28T160046.200.json
 <> 2023-12-28T160031.200.json
 
-###
+###allCattle with fragment
 GRAPHQL http://localhost:8080/graphql
 
 query  {
@@ -113,15 +113,17 @@ query  {
       }
       ... on Pig{
           __typename
-          name
-          breed
-          weight
+          ... pigEssentials
       }
   }
 }
+fragment pigEssentials on Pig {
+    breed
+    sex
+    weight
+}
 
-
-###
+###allAnimals
 GRAPHQL http://localhost:8080/graphql
 
 query  {
@@ -150,7 +152,7 @@ query  {
 
 
 
-###
+###allDemestics
 GRAPHQL http://localhost:8080/graphql
 
 query  {

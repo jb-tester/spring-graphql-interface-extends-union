@@ -128,3 +128,4 @@ input ExampleInput {
     areal: String = "everywhere"
     rare: Boolean = false
 }
+
