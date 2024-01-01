@@ -36,8 +36,6 @@ interface WildAnimal{
     areal: String!
 }
 
-
-
 type Dog implements DomesticAnimal  {
     name : String!
     specie: String!
@@ -47,6 +45,7 @@ type Dog implements DomesticAnimal  {
     breed: String!
     kind: DogKind
 }
+
 type Cat implements DomesticAnimal  {
     name : String!
     specie: String!
@@ -81,6 +80,11 @@ type Fox implements WildAnimal{
     sex: Sex!
     areal: String!
 }
+
+extend type Fox {
+    furbearer: Boolean!
+
+}
 type Tiger implements WildAnimal{
     isRare: Boolean!
     specie: String!
@@ -93,6 +97,8 @@ type Deer implements WildAnimal{
     sex: Sex!
     areal: String!
 }
+
+
 enum DogKind {
     SHEPHERD,
     HUNT,
@@ -113,11 +119,12 @@ union Wild = Fox | Tiger | Deer
 
 union Animal = Dog | Cat | Cow | Pig
 
+## not supported properly on HTTP Request generation:
 extend union Animal = Tiger | Fox | Deer
 
 input ExampleInput {
     sex: Sex = female
-    specie: String = "some deer"
+    specie: String!
     areal: String = "everywhere"
     rare: Boolean = false
 }

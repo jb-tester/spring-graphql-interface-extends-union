@@ -10,7 +10,7 @@ public class Fox implements WildAnimal {
     String _sex;
     private String _specie;
     private String _areal;
-
+    private boolean preciousFur;
     @Override
     public String areal() {
         return this._areal;
@@ -31,10 +31,17 @@ public class Fox implements WildAnimal {
         return this._specie;
     }
 
-    public Fox(String _sex, String specie, String areal) {
+    public boolean isPreciousFur() {
+        return preciousFur;
+    }
+
+
+
+    public Fox(String _sex, String specie, String areal, boolean preciousFur) {
         this._sex = _sex;
         _specie = specie;
         _areal = areal;
+        this.preciousFur = preciousFur;
     }
 
 }

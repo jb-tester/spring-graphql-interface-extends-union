@@ -4,6 +4,7 @@ import com.mytests.spring.springGraphQlInterfaceExtendsUnion.model.*;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
@@ -20,8 +21,8 @@ public class AnimalController {
     private List<WildAnimal> updatedWilds = new ArrayList<>();
 
     private List<WildAnimal> wildAnimals = List.of(
-            new Fox("female", "fenek", "Africa"),
-            new Fox("female", "silver fox", "Europe, N America"),
+            new Fox("female", "fenek", "Africa", false),
+            new Fox("female", "silver fox", "Europe, N America", true),
             new Tiger("male", "bengal tiger", "Asia"),
             new Deer("male", "reindeer", "Northern Europe, Siberia, and North America", false)
     );
@@ -48,6 +49,11 @@ public class AnimalController {
             new Pig("Pelageja", "female", "Berkshire", 220)
     );
 
+    // references field from type extending 'Fox' type and thus is not resolved
+    @SchemaMapping(typeName = "Fox", field = "furbearer")
+    public boolean isFurbearer(Fox fox){
+        return fox.isPreciousFur();
+    }
     @QueryMapping()
     public List<? extends Animal> allAnimals() {
         animals.addAll(dogs);
@@ -90,14 +96,14 @@ public class AnimalController {
         return pets;
     }
 
-    // https://youtrack.jetbrains.com/issue/IDEA-339942
+    // references query that extends type Query and is not resolved: https://youtrack.jetbrains.com/issue/IDEA-339942
     @QueryMapping()
     public List<Cat> allCats() {
 
         return cats;
     }
 
-    // https://youtrack.jetbrains.com/issue/IDEA-339942
+    // references query that extends type Query and is not resolved: https://youtrack.jetbrains.com/issue/IDEA-339942
     @QueryMapping()
     public List<Dog> allDogs() {
 
@@ -115,7 +121,7 @@ public class AnimalController {
         return deer;
     }
 
-    // https://youtrack.jetbrains.com/issue/IDEA-339942
+    // references mutation query  that extends type Mutation and is not resolved: https://youtrack.jetbrains.com/issue/IDEA-339942
     @MutationMapping("addDeer2")
     public Deer addDeer2(@Argument String specie, @Argument String sex, @Argument String areal, @Argument Boolean rare) {
 

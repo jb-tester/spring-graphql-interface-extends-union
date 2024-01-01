@@ -45,6 +45,11 @@ GRAPHQL http://localhost:8080/graphql
 query  {
     allWilds {
         specie
+        areal
+        isRare
+        ... on Fox{
+            furbearer
+        }
     }
 }
 
@@ -88,6 +93,7 @@ query  {
         breed
         name
     }
+
   }
 }
 
