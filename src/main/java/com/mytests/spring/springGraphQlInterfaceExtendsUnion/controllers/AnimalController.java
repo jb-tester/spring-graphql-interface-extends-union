@@ -54,6 +54,12 @@ public class AnimalController {
     public boolean isFurbearer(Fox fox){
         return fox.isPreciousFur();
     }
+    // reference to interface is not resolved
+    // https://youtrack.jetbrains.com/issue/IDEA-373562
+    @SchemaMapping(typeName = "WildAnimal", field = "redBook")
+    public boolean isRedBook(WildAnimal animal){
+        return animal.isRare();
+    }
     @QueryMapping()
     public List<? extends Animal> allAnimals() {
         animals.addAll(dogs);

@@ -30,7 +30,7 @@ interface DomesticAnimal{
 }
 
 interface WildAnimal{
-    isRare: Boolean!
+    redBook: Boolean!
     specie: String!
     sex: Sex!
     areal: String!
@@ -75,7 +75,7 @@ type Pig implements DomesticAnimal  {
 }
 
 type Fox implements WildAnimal{
-    isRare: Boolean!
+    redBook: Boolean!
     specie: String!
     sex: Sex!
     areal: String!
@@ -86,13 +86,13 @@ extend type Fox {
 
 }
 type Tiger implements WildAnimal{
-    isRare: Boolean!
+    redBook: Boolean!
     specie: String!
     sex: Sex!
     areal: String!
 }
 type Deer implements WildAnimal{
-    isRare: Boolean!
+    redBook: Boolean!
     specie: String!
     sex: Sex!
     areal: String!
@@ -126,6 +126,6 @@ input ExampleInput {
     sex: Sex = female
     specie: String!
     areal: String = "everywhere"
-    rare: Boolean = false
+    redBook: Boolean = false
 }
 

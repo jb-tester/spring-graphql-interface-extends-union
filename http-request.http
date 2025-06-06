@@ -8,7 +8,7 @@ mutation   {
     specie
     sex
     areal
-    isRare
+    redBook
 
   }
 }
@@ -23,7 +23,7 @@ mutation  addDeer($input: ExampleInput) {
     specie
     sex
     areal
-    isRare
+    redBook
 
   }
 }
@@ -33,7 +33,7 @@ mutation  addDeer($input: ExampleInput) {
      "specie": "moose",
      "sex": "male",
      "areal": "Europe, N America",
-     "rare": false
+     "redBook": false
    }
 
 
@@ -46,7 +46,7 @@ query  {
     allWilds {
         specie
         areal
-        isRare
+        redBook
         ... on Fox{
             furbearer
         }
@@ -141,7 +141,7 @@ query  {
         }
        ... on WildAnimal{
            specie
-           isRare
+           redBook
            areal
            sex
        }
